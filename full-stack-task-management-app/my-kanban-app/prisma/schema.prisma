@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String?
+  email     String?  @unique
+  password  String?  // For auth (or use NextAuth providers)
+  boards    Board[]  // Users own boards
+}
+
+model Board {
+  id        String   @id @default(uuid())
+  title     String
+  userId    String
+  lists     List[]
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model List {
+  id        String   @id @default(uuid())
+  title     String
+  order     Int      // For sorting lists
+  boardId   String
+  cards     Card[]
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+}
+
+model Card {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  order       Int      // For sorting cards within list
+  priority    String   @default("medium") // low, medium, high, urgent
+  status      String   @default("todo") // todo, in-progress, done
+  color       String?  // Optional hex color
+  listId      String
+  list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+}
