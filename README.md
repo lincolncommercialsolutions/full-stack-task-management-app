@@ -9,7 +9,7 @@ Priority levels with color-coded tags
 Real-time status tracking & workflow visualization
 Secure authentication via NextAuth.js (credentials provider, super easy to add OAuth later)
 Full dark mode support (system + manual toggle)
-Completely responsive — looks great on phone, tablet, and desktop
+Completely responsive; looks great on phone, tablet, and desktop
 Simple, modern UI that stays out of your way
 
 Great for personal projects, small team boards, freelance client tracking, or just keeping life organized.
